@@ -28,7 +28,7 @@ window.renderStatistics = function (ctx, names, times) {
   };
   var getColor = function (name) { // Получаем цвет для чела с именем name
     var color;
-    if (name === 'Вы') { // объяснить значение трех равно и смыл скобок
+    if (name === 'Вы') {
       color = 'rgba(255, 0, 0, 1.0)';
     } else {
       color = 'rgba(0, 0, 255, ' + Math.random() + ')';

@@ -131,6 +131,6 @@ var wizardFireballColor = document.forms[0]['fireball-color'];
 
 wizardFireball.addEventListener('click', function () {
   var colorFireball = COLOR_WIZARD_FIREBALL[getRandomIndex(0, COLOR_WIZARD_FIREBALL.length - 1)];
-  wizardFireball.style.fill = colorFireball;
+  wizardFireball.style.background = colorFireball;
   wizardFireballColor.value = colorFireball;
 });

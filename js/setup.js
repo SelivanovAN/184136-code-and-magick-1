@@ -82,7 +82,7 @@ setupClose.addEventListener('keydown', function (evt) {
 
 var userNameInput = setup.querySelector('.setup-user-name');
 
-userNameInput.addEventListener('invalid', function (evt) { // eslint выдает ошибку - почему, где ее использовать надо?
+userNameInput.addEventListener('invalid', function () { // eslint выдает ошибку - почему, где ее использовать надо?
   if (userNameInput.validity.tooShort) {
     userNameInput.setCustomValidity('Имя должно состоять минимум из 2-х символов'); // not wark
   } else if (userNameInput.validity.tooLong) {

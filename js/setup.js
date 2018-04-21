@@ -140,41 +140,41 @@ wizardFireball.addEventListener('click', function () {
   wizardFireballColor.value = colorFireball;
 });
 
+// take a star
 
-var dialogHandle = setup.querySelector('.setup-user-pic'); // находим элемент за который тащим
+var shopElement = document.querySelector('.setup-artifacts-shop');
+var artifactsElement = document.querySelector('.setup-artifacts');
+var draggedItem = null;
 
-dialogHandle.addEventListener('mousedown', function (evt) { // обработаем событие начала перетаскивания нашего диалога
+shopElement.addEventListener('dragstart', function (evt) {
+  if (evt.target.tagName.toLowerCase() === 'img') {
+    draggedItem = evt.target;
+    evt.dataTransfer.setData('text/plain', evt.target.alt);
+    artifactsElement.style.outline = '2px dashed red';
+  }
+});
+
+artifactsElement.addEventListener('dragover', function (evt) {
   evt.preventDefault();
+  return false;
+});
 
-  var startCoords = { // Запомним координаты точки, с которой мы начали перемещать диалог
-    x: evt.clientX,
-    y: evt.clientY
-  };
+artifactsElement.addEventListener('drop', function (evt) {
+  artifactsElement.style.outline = '';
+  evt.target.style.backgroundColor = '';
+  evt.target.style.outline = '';
+  evt.target.appendChild(draggedItem);
+  evt.preventDefault();
+});
 
-  var onMouseMove = function (moveEvt) {
-    moveEvt.preventDefault();
+artifactsElement.addEventListener('dragenter', function (evt) {
+  evt.target.style.backgroundColor = 'yellow';
+  evt.target.style.outline = '2px dashed red';
+  evt.preventDefault();
+});
 
-    var shift = {
-      x: startCoords.x - moveEvt.clientX,
-      y: startCoords.y - moveEvt.clientY
-    };
-
-    startCoords = {
-      x: moveEvt.clientX,
-      y: moveEvt.clientY
-    };
-
-    setup.style.top = (setup.offsetTop - shift.y) + 'px';
-    setup.style.left = (setup.offsetLeft - shift.x) + 'px';
-  };
-
-  var onMouseUp = function (upEvt) {
-    upEvt.preventDefault();
-
-    document.removeEventListener('mousemove', onMouseMove);
-    document.removeEventListener('mouseup', onMouseUp);
-  };
-
-  document.addEventListener('mousemove', onMouseMove); // Добавим обработчики события передвижения мыши
-  document.addEventListener('mouseup', onMouseUp); // Добавим обработчики события отпускания кнопки мыши
+artifactsElement.addEventListener('dragleave', function (evt) {
+  evt.target.style.backgroundColor = '';
+  evt.target.style.outline = '';
+  evt.preventDefault();
 });

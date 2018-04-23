@@ -33,13 +33,13 @@
     'yellow',
     'green'];
 
-  var userDialog = document.querySelector('.setup');
-
-  var similarListElement = userDialog.querySelector('.setup-similar-list');
+  var setup = document.querySelector('.setup');
+  var similarListElement = setup.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
-  var wizards = [];
-  for (var j = 0; j < 4; j++) {
+  var wizards = []; // создаем массив объектов из 4 магов
+  var NUMBERS_WIZARDS = 4;
+  for (var j = 0; j < NUMBERS_WIZARDS; j++) {
     wizards.push({
       name: WIZARD_NAMES[window.getRandomIndex(0, WIZARD_NAMES.length - 1)] + ' ' + WIZARD_SUR_NAME[window.getRandomIndex(0, WIZARD_SUR_NAME.length - 1)],
       coatColor: WIZARD_COAT_COLOR[window.getRandomIndex(0, WIZARD_COAT_COLOR.length - 1)],
@@ -60,5 +60,5 @@
     fragment.appendChild(renderWizard(wizards[i]));
   }
   similarListElement.appendChild(fragment);
-  userDialog.querySelector('.setup-similar').classList.remove('hidden');
+  setup.querySelector('.setup-similar').classList.remove('hidden');
 })();

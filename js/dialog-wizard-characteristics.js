@@ -73,13 +73,6 @@
 
   shopElement.addEventListener('dragstart', function (evt) {
     if (evt.target.tagName.toLowerCase() === 'img') {
-      // var imgClone = document.createElement('img');
-      // imgClone.src = evt.target.src;
-      // imgClone.alt = evt.target.alt;
-      // imgClone.width = evt.target.width;
-      // imgClone.height = evt.target.height;
-      // draggedItem = imgClone;
-      // draggedItem = evt.target;
       draggedItem = evt.target.cloneNode(true);
       evt.dataTransfer.setData('text/plain', evt.target.alt);
       artifactsElement.style.outline = '2px dashed red';
@@ -92,10 +85,14 @@
   });
 
   artifactsElement.addEventListener('drop', function (evt) {
+    if (evt.target.dataset.fill === 'true') {
+      return;
+    }
     artifactsElement.style.outline = '';
     evt.target.style.backgroundColor = '';
     evt.target.style.outline = '';
     evt.target.appendChild(draggedItem);
+    evt.target.setAttribute('data-fill', true);
     evt.preventDefault();
   });
 

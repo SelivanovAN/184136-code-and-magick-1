@@ -4,8 +4,7 @@
 
   // меняем и проверяем на корректность имя мага
 
-  var setup = document.querySelector('.setup');
-  var userNameInput = setup.querySelector('.setup-user-name');
+  var userNameInput = window.setup.querySelector('.setup-user-name');
 
   userNameInput.addEventListener('invalid', function () {
     if (userNameInput.validity.tooShort) {
@@ -38,10 +37,10 @@
     'green'
   ];
 
-  var wizardEyes = setup.querySelector('.setup-wizard .wizard-eyes');
+  var wizardEyes = window.setup.querySelector('.setup-wizard .wizard-eyes');
   var wizardEyesColor = document.forms[0]['eyes-color'];
   wizardEyes.addEventListener('click', function () {
-    var colorEyes = COLOR_WIZARD_EYES[window.getRandomIndex(0, COLOR_WIZARD_EYES.length - 1)];
+    var colorEyes = COLOR_WIZARD_EYES[window.util.getRandomIndex(0, COLOR_WIZARD_EYES.length - 1)];
     wizardEyes.style.fill = colorEyes;
     wizardEyesColor.value = colorEyes;
   });
@@ -56,11 +55,11 @@
     '#e6e848'
   ];
 
-  var wizardFireball = setup.querySelector('.setup-fireball-wrap');
+  var wizardFireball = window.setup.querySelector('.setup-fireball-wrap');
   var wizardFireballColor = document.forms[0]['fireball-color'];
 
   wizardFireball.addEventListener('click', function () {
-    var colorFireball = COLOR_WIZARD_FIREBALL[window.getRandomIndex(0, COLOR_WIZARD_FIREBALL.length - 1)];
+    var colorFireball = COLOR_WIZARD_FIREBALL[window.util.getRandomIndex(0, COLOR_WIZARD_FIREBALL.length - 1)];
     wizardFireball.style.background = colorFireball;
     wizardFireballColor.value = colorFireball;
   });

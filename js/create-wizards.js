@@ -23,25 +23,25 @@
   //   'Ирвинг'
 // ];
 
-  var WIZARD_COAT_COLOR = [
-    'rgb(101, 137, 164)',
-    'rgb(241, 43, 107)',
-    'rgb(146, 100, 161)',
-    'rgb(56, 159, 117)',
-    'rgb(215, 210, 55)',
-    'rgb(0, 0, 0)'
-  ];
+  // var WIZARD_COAT_COLOR = [
+  //   'rgb(101, 137, 164)',
+  //   'rgb(241, 43, 107)',
+  //   'rgb(146, 100, 161)',
+  //   'rgb(56, 159, 117)',
+  //   'rgb(215, 210, 55)',
+  //   'rgb(0, 0, 0)'
+  // ];
+  //
+  // var WIZARD_EYES_COLOR = [
+  //   'black',
+  //   'red',
+  //   'blue',
+  //   'yellow',
+  //   'green'
+  // ];
 
-  var WIZARD_EYES_COLOR = [
-    'black',
-    'red',
-    'blue',
-    'yellow',
-    'green'
-  ];
-
-  var setup = document.querySelector('.setup');
-  var similarListElement = setup.querySelector('.setup-similar-list');
+  // var setup = document.querySelector('.setup');
+  var similarListElement = window.setup.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
   // var wizards = []; // создаем массив объектов из 4 магов
@@ -58,8 +58,8 @@
   var renderWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
+    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
     return wizardElement;
   };
 
@@ -71,7 +71,7 @@
     }
     similarListElement.appendChild(fragment);
 
-    setup.querySelector('.setup-similar').classList.remove('hidden');
+    window.setup.querySelector('.setup-similar').classList.remove('hidden');
   };
 
   var errorHandler = function (errorMessage) {
@@ -91,11 +91,11 @@
 
   // send information
 
-  var form = setup.querySelector('.setup-wizard-form');
+  var form = window.setup.querySelector('.setup-wizard-form');
 
   form.addEventListener('submit', function (evt) {
-    window.upload(new FormData(form), function (response) { // здесь что надо указать - closePopup?
-      setup.classList.add('hidden');
+    window.upload(new FormData(form), function () {
+      window.util.closePopup();
     });
     evt.preventDefault();
   });

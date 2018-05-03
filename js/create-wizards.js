@@ -65,8 +65,9 @@
 
   var successHandler = function (wizards) {
     var fragment = document.createDocumentFragment();
+    var NUMBERS_WIZARDS = 4;
 
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < NUMBERS_WIZARDS; i++) {
       fragment.appendChild(renderWizard(wizards[i]));
     }
     similarListElement.appendChild(fragment);
@@ -86,7 +87,7 @@
     document.body.insertAdjacentElement('afterbegin', node);
   };
 
-  window.load(successHandler, errorHandler);
+  window.backend.load(successHandler, errorHandler);
 
 
   // send information
@@ -94,7 +95,7 @@
   var form = window.setup.querySelector('.setup-wizard-form');
 
   form.addEventListener('submit', function (evt) {
-    window.upload(new FormData(form), function () {
+    window.backend.save(new FormData(form), function () {
       window.util.closePopup();
     });
     evt.preventDefault();

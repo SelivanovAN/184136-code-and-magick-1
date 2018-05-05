@@ -5,56 +5,33 @@
   // Открывание и закрывание диалогового окна мага
 
   var setupOpen = document.querySelector('.setup-open');
-  var setup = document.querySelector('.setup');
-  var setupClose = setup.querySelector('.setup-close');
+  var setupClose = window.setup.querySelector('.setup-close');
 
-  var coordinatesSetupTop = setup.style.top;
-  var coordinatesSetupLeft = setup.style.left;
-
-  var ESC_KEYCODE = 27;
   var ENTER_KEYCODE = 13;
 
-  var onPopupEscPress = function (evt) {
-    if (evt.keyCode === ESC_KEYCODE) {
-      closePopup();
-    }
-  };
-
-  var openPopup = function () {
-    setup.classList.remove('hidden');
-    document.addEventListener('keydown', onPopupEscPress);
-  };
-
-  var closePopup = function () {
-    setup.classList.add('hidden');
-    document.removeEventListener('keydown', onPopupEscPress);
-    setup.style.top = coordinatesSetupTop;
-    setup.style.left = coordinatesSetupLeft;
-  };
-
   setupOpen.addEventListener('click', function () {
-    openPopup();
+    window.util.openPopup();
   });
 
   setupOpen.addEventListener('keydown', function (evt) {
     if (evt.keyCode === ENTER_KEYCODE) {
-      openPopup();
+      window.util.openPopup();
     }
   });
 
   setupClose.addEventListener('click', function () {
-    closePopup();
+    window.util.closePopup();
   });
 
   setupClose.addEventListener('keydown', function (evt) {
     if (evt.keyCode === ENTER_KEYCODE) {
-      closePopup();
+      window.util.closePopup();
     }
   });
 
   // Перетаскивание окна мага
 
-  var dialogHandle = setup.querySelector('.setup-user-pic'); // находим элемент за который тащим
+  var dialogHandle = window.setup.querySelector('.setup-user-pic'); // находим элемент за который тащим
 
   dialogHandle.addEventListener('mousedown', function (evt) { // обработаем событие начала перетаскивания нашего диалога
     evt.preventDefault();
@@ -77,8 +54,8 @@
         y: moveEvt.clientY
       };
 
-      setup.style.top = (setup.offsetTop - shift.y) + 'px';
-      setup.style.left = (setup.offsetLeft - shift.x) + 'px';
+      window.setup.style.top = (window.setup.offsetTop - shift.y) + 'px';
+      window.setup.style.left = (window.setup.offsetLeft - shift.x) + 'px';
     };
 
     var onMouseUp = function (upEvt) {
